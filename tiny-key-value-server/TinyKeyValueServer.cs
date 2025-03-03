@@ -42,16 +42,16 @@ class TinyKeyValueServer : IDisposable
         jobs
         = new Dictionary<string, Func<HttpListenerContext, Dictionary<string, string>, Res>> {
             {
-                "/hello", DefaultEndpoint.Hello
+                "GET /hello", DefaultEndpoint.Hello
             },
             { 
-                "/", DefaultEndpoint.MyDefaultEndpoint
+                "GET /", DefaultEndpoint.MyDefaultEndpoint
             },
             {
-                "/get", DefaultEndpoint.Get
+                "GET /get", DefaultEndpoint.Get
             },
             {
-                "/set", DefaultEndpoint.Set
+                "POST /set", DefaultEndpoint.Set
             }
 
         };
@@ -134,12 +134,13 @@ class TinyKeyValueServer : IDisposable
                 // Accept: application/json
 
                 string url = context.Request.Url.AbsolutePath ?? "";
+                string httpMethod = context.Request.HttpMethod;
 
-                if (url != "")
+                if (url != "" && httpMethod != "")
                 {
                     Func<HttpListenerContext, Dictionary<string, string>, Res > value = null;
                     //if (jobs.TryGetValue("/hello", out value))
-                    if (jobs.TryGetValue(url, out value))
+                    if (jobs.TryGetValue(httpMethod + " " +  url, out value))
                     {
                         Res r = value(context, cache);
                         Console.WriteLine(r.message);
