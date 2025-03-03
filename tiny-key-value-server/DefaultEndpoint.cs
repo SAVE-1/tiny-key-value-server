@@ -33,16 +33,19 @@ public static class DefaultEndpoint
 
     public static Res Get(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
-
         var paramsCollection = HttpUtility.ParseQueryString(context.Request.Url.Query);
 
         string result = "";
-        if (cache.TryGetValue("set-test", out result))
+        lock (cache)
         {
-            Console.WriteLine(result);
-        } else
-        {
-            result = "can't find nada :((";
+            if (cache.TryGetValue("set-test", out result))
+            {
+                Console.WriteLine(result);
+            }
+            else
+            {
+                result = "can't find nada :((";
+            }
         }
 
         Console.WriteLine("Getter");
@@ -61,14 +64,17 @@ public static class DefaultEndpoint
     {
         Console.WriteLine("Setter");
 
-        try
+        lock(cache)
         {
-            cache.Add("set-test", "setter test");
-        }
+            try
+            {
+                cache.Add("set-test", "setter test");
+            }
 
-        catch (ArgumentException)
-        {
-            cache["set-test"] = "setter test";
+            catch (ArgumentException)
+            {
+                cache["set-test"] = "setter test";
+            }
         }
         
         string responseString = "{'code': 200, 'endpoint': 'set'}";
