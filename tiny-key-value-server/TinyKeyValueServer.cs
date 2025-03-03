@@ -156,6 +156,7 @@ class TinyKeyValueServer : IDisposable
                             Console.WriteLine(s.message);
                         }
                     }
+                } else
                 }
 
             }
