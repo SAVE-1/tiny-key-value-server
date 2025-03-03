@@ -8,7 +8,6 @@ internal class Program
 {
     static void Main(string[] args)
     {
-
         TinyKeyValueServer s = new();
         s.Start();
 
@@ -17,9 +16,5 @@ internal class Program
         Console.WriteLine("Starting at: http://localhost:8888/asd404");
         Console.WriteLine("Starting at: http://localhost:8888/get");
         Console.WriteLine("Starting at: http://localhost:8888/set");
-
-
-
-
     }
 }

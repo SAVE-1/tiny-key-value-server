@@ -99,7 +99,4 @@ public static class DefaultEndpoint
         output.Close();
         return new Res(0, "200");
     }
-
-
-
 }
