@@ -157,6 +157,14 @@ class TinyKeyValueServer : IDisposable
                         }
                     }
                 } else
+                {
+                    string responseString = "{'code': 500}";
+                    byte[] buffer = System.Text.Encoding.UTF8.GetBytes(responseString);
+                    context.Response.ContentLength64 = buffer.Length;
+                    context.Response.StatusCode = 500;
+                    System.IO.Stream output = context.Response.OutputStream;
+                    output.Write(buffer, 0, buffer.Length);
+                    output.Close();
                 }
 
             }
