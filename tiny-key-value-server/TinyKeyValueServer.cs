@@ -19,7 +19,7 @@ class TinyKeyValueServer : IDisposable
 {
     private readonly HttpListener _listener;
     private readonly Thread _listenerThread;
-    private readonly Thread[] _workers;
+    private readonly Thread _worker;
     private readonly ManualResetEvent _stop, _ready;
     private Queue<HttpListenerContext> _queue;
 
@@ -30,12 +30,12 @@ class TinyKeyValueServer : IDisposable
 
     public TinyKeyValueServer(int maxThreads)
     {
-        _workers = new Thread[maxThreads];
         _queue = new Queue<HttpListenerContext>();
         _stop = new ManualResetEvent(false);
         _ready = new ManualResetEvent(false);
         _listener = new HttpListener();
         _listenerThread = new Thread(HandleRequests);
+        _worker = new Thread(Worker);
 
         cache = new Dictionary<string, string>();
 
@@ -67,12 +67,7 @@ class TinyKeyValueServer : IDisposable
         _listener.Prefixes.Add(String.Format(@"http://localhost:8888/"));
         _listener.Start();
         _listenerThread.Start();
-
-        for (int i = 0; i < _workers.Length; i++)
-        {
-            _workers[i] = new Thread(Worker);
-            _workers[i].Start();
-        }
+        _worker.Start();
     }
 
     public void Dispose()
@@ -82,8 +77,7 @@ class TinyKeyValueServer : IDisposable
     {
         _stop.Set();
         _listenerThread.Join();
-        foreach (Thread worker in _workers)
-            worker.Join();
+        _worker.Join();
         _listener.Stop();
     }
 
