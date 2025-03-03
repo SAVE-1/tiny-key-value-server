@@ -28,7 +28,7 @@ class TinyKeyValueServer : IDisposable
 
     private Dictionary<string, string> cache;
 
-    public TinyKeyValueServer(int maxThreads)
+    public TinyKeyValueServer()
     {
         _queue = new Queue<HttpListenerContext>();
         _stop = new ManualResetEvent(false);

@@ -9,7 +9,7 @@ internal class Program
     static void Main(string[] args)
     {
 
-        TinyKeyValueServer s = new(10);
+        TinyKeyValueServer s = new();
         s.Start();
 
         Console.WriteLine("Starting at: http://localhost:8888/");
