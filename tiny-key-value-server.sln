@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tiny-key-value-server", "tiny-key-value-server\tiny-key-value-server.csproj", "{0B2CE6B8-FE46-4A56-9516-669FEDFE9E43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tiny-key-value-server", "tiny-key-value-server\tiny-key-value-server.csproj", "{0B2CE6B8-FE46-4A56-9516-669FEDFE9E43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testing", "testing\testing.csproj", "{3216E54C-CFDE-4252-ADB2-C03162098E73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0B2CE6B8-FE46-4A56-9516-669FEDFE9E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B2CE6B8-FE46-4A56-9516-669FEDFE9E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B2CE6B8-FE46-4A56-9516-669FEDFE9E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3216E54C-CFDE-4252-ADB2-C03162098E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3216E54C-CFDE-4252-ADB2-C03162098E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3216E54C-CFDE-4252-ADB2-C03162098E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3216E54C-CFDE-4252-ADB2-C03162098E73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
