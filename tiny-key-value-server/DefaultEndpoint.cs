@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Web;
 
 namespace tiny_key_value_server;
 
@@ -32,6 +33,9 @@ public static class DefaultEndpoint
 
     public static Res Get(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
+
+        var paramsCollection = HttpUtility.ParseQueryString(context.Request.Url.Query);
+
         string result = "";
         if (cache.TryGetValue("set-test", out result))
         {

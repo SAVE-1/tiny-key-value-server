@@ -129,11 +129,11 @@ class TinyKeyValueServer : IDisposable
                 Console.WriteLine("Raw URL: {0}", context.Request.RawUrl);
                 Console.WriteLine("Query: {0}", context.Request.QueryString);
                 Console.WriteLine("Url fragment: {0}", context.Request.Url.Fragment);
-
+                Console.WriteLine("Url fragment: {0}", context.Request.Url.Query);
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
                 // Accept: application/json
 
-                string url = context.Request.RawUrl ?? "";
+                string url = context.Request.Url.AbsolutePath ?? "";
 
                 if (url != "")
                 {
