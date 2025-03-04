@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /testing/testing.csproj
 /testing/*
+/test-2/test-2.csproj
+/test-2/*
