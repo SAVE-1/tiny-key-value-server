@@ -5,6 +5,7 @@ namespace tiny_key_value_server;
 
 public static class DefaultEndpoint
 {
+    /* Endpoint for /.  */
     public static Res MyDefaultEndpoint(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
         Console.WriteLine("HELLO, WORLD! FROM /hello");
@@ -17,6 +18,7 @@ public static class DefaultEndpoint
         return new Res(0, "200");
     }
 
+    /* Endpoint for 404.  */
     public static Res NotFound(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
         Console.WriteLine("Not found");
@@ -31,6 +33,7 @@ public static class DefaultEndpoint
         return new Res(0, "All good boss!!");
     }
 
+    /* Endpoint for getting key:values from the internal cache.  */
     public static Res Get(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
         var paramsCollection = HttpUtility.ParseQueryString(context.Request.Url.Query);
@@ -60,6 +63,7 @@ public static class DefaultEndpoint
         return new Res(0, "200");
     }
 
+    /* Endpoint for setting key:values in the internal cache.  */
     public static Res Set(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
         Console.WriteLine("Setter");
@@ -88,6 +92,7 @@ public static class DefaultEndpoint
         return new Res(0, "200");
     }
 
+    /* Endpoint for tests, this will be deleted in the future.  */
     public static Res Hello(HttpListenerContext context, Dictionary<string, string> cache = null)
     {
         Console.WriteLine("HELLO, WORLD! FROM /hello");
