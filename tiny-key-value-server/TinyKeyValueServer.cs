@@ -12,7 +12,6 @@ public record class Res
         this.code = code;
         this.message = message;
     }
-
 }
 
 class TinyKeyValueServer : IDisposable
@@ -24,7 +23,7 @@ class TinyKeyValueServer : IDisposable
     private Queue<HttpListenerContext> _queue;
 
     private delegate TResult Func<in T, out TResult>(T arg);
-    private Dictionary<string, Func<HttpListenerContext, Dictionary<string, string>, Res>> jobs;
+    private Dictionary<string, Func<HttpListenerContext, Dictionary<string, string>, Res>> endpoints;
 
     private Dictionary<string, string> cache;
 
@@ -39,7 +38,7 @@ class TinyKeyValueServer : IDisposable
 
         cache = new Dictionary<string, string>();
 
-        jobs
+        endpoints
         = new Dictionary<string, Func<HttpListenerContext, Dictionary<string, string>, Res>> {
             {
                 "GET /hello", DefaultEndpoint.Hello
@@ -140,7 +139,7 @@ class TinyKeyValueServer : IDisposable
                 {
                     Func<HttpListenerContext, Dictionary<string, string>, Res > value = null;
                     //if (jobs.TryGetValue("/hello", out value))
-                    if (jobs.TryGetValue(httpMethod + " " +  url, out value))
+                    if (endpoints.TryGetValue(httpMethod + " " +  url, out value))
                     {
                         Res r = value(context, cache);
                         Console.WriteLine(r.message);
