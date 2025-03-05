@@ -11,10 +11,13 @@ internal class Program
         TinyKeyValueServer s = new();
         s.Start();
 
+#if DEBUG
         Console.WriteLine("Starting at: http://localhost:8888/");
         Console.WriteLine("Starting at: http://localhost:8888/hello?key=hello");
         Console.WriteLine("Starting at: http://localhost:8888/asd404");
         Console.WriteLine("Starting at: http://localhost:8888/get");
         Console.WriteLine("Starting at: http://localhost:8888/set");
+#endif
+
     }
 }
