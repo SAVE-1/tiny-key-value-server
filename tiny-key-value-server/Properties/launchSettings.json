@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "tiny-key-value-server": {
+      "commandName": "Project",
+      "commandLineArgs": "-p 8888"
+    }
+  }
+}

@@ -57,9 +57,7 @@ class TinyKeyValueServer : IDisposable
             {
                 "DELETE /key", DefaultEndpoint.NotImplemented
             }
-
         };
-    }
 
 #if DEBUG
         cache.Add("test", "123");
