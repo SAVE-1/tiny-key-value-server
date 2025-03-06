@@ -117,6 +117,7 @@ public static class DefaultEndpoint
         return new Res(0, 200, "200");
     }
 
+    public static Res NotImplemented(HttpListenerContext context, Dictionary<string, string>? cache = null)
     private static void ContextHelper(HttpListenerContext context, string message, int statusCode)
     {
         byte[] buffer = System.Text.Encoding.UTF8.GetBytes(message);
