@@ -118,6 +118,11 @@ public static class DefaultEndpoint
     }
 
     public static Res NotImplemented(HttpListenerContext context, Dictionary<string, string>? cache = null)
+    {
+        ContextHelper(context, "{'code': 501, 'endpoint': '/hello'}", 501);
+        return new Res(0, 501, "501");
+    }
+
     private static void ContextHelper(HttpListenerContext context, string message, int statusCode)
     {
         byte[] buffer = System.Text.Encoding.UTF8.GetBytes(message);
