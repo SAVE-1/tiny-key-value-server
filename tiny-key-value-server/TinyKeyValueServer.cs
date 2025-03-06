@@ -61,18 +61,21 @@ class TinyKeyValueServer : IDisposable
         };
     }
 
-    private void ErrorEndpoint()
-    {
+#if DEBUG
+        cache.Add("test", "123");
+#endif
 
     }
 
-    public void Start()
+    public void Start(int port)
     {
-        _listener.Prefixes.Add(String.Format(@"http://localhost:8888/"));
+        _listener.Prefixes.Add(String.Format(@"http://localhost:{port}/"));
         _listener.Start();
         _listenerThread.Start();
         _worker.Start();
     }
+
+
 
     public void Dispose()
     { Stop(); }
@@ -128,12 +131,14 @@ class TinyKeyValueServer : IDisposable
 
             try
             {
+#if DEBUG
                 Console.WriteLine(context.Request.Url.ToString());
                 Console.WriteLine("URL: {0}", context.Request.Url.OriginalString);
                 Console.WriteLine("Raw URL: {0}", context.Request.RawUrl);
                 Console.WriteLine("Query: {0}", context.Request.QueryString);
                 Console.WriteLine("Url fragment: {0}", context.Request.Url.Fragment);
                 Console.WriteLine("Url fragment: {0}", context.Request.Url.Query);
+#endif
                 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
                 // Accept: application/json
 
@@ -147,7 +152,9 @@ class TinyKeyValueServer : IDisposable
                     if (endpoints.TryGetValue(httpMethod + " " +  url, out value))
                     {
                         Res r = value(context, cache);
+#if DEBUG
                         Console.WriteLine(r.message);
+#endif
                     }
                     else
                     {
