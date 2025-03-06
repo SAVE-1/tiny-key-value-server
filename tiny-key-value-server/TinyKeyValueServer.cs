@@ -5,11 +5,13 @@ namespace tiny_key_value_server;
 public record class Res
 {
     public int code;
+    public int httpReturnCode;
     public string message;
 
-    public Res(int code, string message)
+    public Res(int code, int http, string message)
     {
         this.code = code;
+        this.httpReturnCode = http;
         this.message = message;
     }
 }
