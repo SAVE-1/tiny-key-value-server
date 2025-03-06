@@ -49,10 +49,13 @@ class TinyKeyValueServer : IDisposable
                 "GET /", DefaultEndpoint.MyDefaultEndpoint
             },
             {
-                "GET /get", DefaultEndpoint.Get
+                "GET /key", DefaultEndpoint.Get
             },
             {
-                "POST /set", DefaultEndpoint.Set
+                "POST /key", DefaultEndpoint.Set
+            },
+            {
+                "DELETE /key", DefaultEndpoint.NotImplemented
             }
 
         };
