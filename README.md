@@ -24,5 +24,9 @@ GET /<anything else>
 
 # How to run
 ```
-dotnet run
+dotnet run -p <your port>
+
+or
+
+dotnet run --port <your port>
 ```
