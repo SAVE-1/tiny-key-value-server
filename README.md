@@ -5,20 +5,23 @@ I'm using a single thread for incoming requests job queue to preserve determinis
 
 # API and usage
 ```
-GET /get?key=<key name>
-- get a key:value
+GET /key?key=<key name>
+- Get a key:value
 
-POST /set?key=<key name>&value=<value>
-- set a key:value
+POST /key?key=<key name>&value=<value>
+- Set a key:value
+
+DELETE /key?key=<key name>
+- Not yet implemented
 
 GET /
-- a hello root
+- A hello root
 
 GET /hello
-- server responds with a hello
+- Server responds with a hello
 
 GET /<anything else>
-- a 404 message
+- A 404 message
 
 ```
 
