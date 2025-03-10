@@ -67,7 +67,7 @@ class TinyKeyValueServer : IDisposable
 
     public void Start(int port)
     {
-        _listener.Prefixes.Add(String.Format(@"http://localhost:{port}/"));
+        _listener.Prefixes.Add($"http://localhost:{port}/");
         _listener.Start();
         _listenerThread.Start();
         _worker.Start();
